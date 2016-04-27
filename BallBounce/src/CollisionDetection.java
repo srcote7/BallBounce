@@ -36,14 +36,12 @@ public class CollisionDetection {
 	}
 	private boolean leftWallHit(Ball ball){
 		if (ball.getxPosCenter() <= ball.getRadius()){
-			System.out.println("left hit");
 			return true;
 		}
 		return false;
 	}
 	private boolean rightWallHit(Ball ball){
 		if (ball.getxPosCenter() >= panelWidth - ball.getRadius()){
-			System.out.println("right hit");
 			return true;
 		}
 		return false;
@@ -56,7 +54,6 @@ public class CollisionDetection {
 		float deltaY = Math.abs(ballA.getyPosCenter() - ballB.getyPosCenter());
 		float distance = (float) Math.pow(deltaX*deltaX + deltaY*deltaY, .5);
 		if(distance <= radiusA + radiusB){
-			System.out.println("Ball HIT!!!");
 			return true;
 		}
 		return false;

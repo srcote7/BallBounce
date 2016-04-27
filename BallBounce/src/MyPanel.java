@@ -8,7 +8,7 @@ import javax.swing.Timer;
 public class MyPanel extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
-	int speed = 2;
+	int speed = 1;
 	Timer timer;
 	CollisionDetection c;
 	BallList bl;
