@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class MyPanel extends JPanel implements ActionListener{
+public class MainPanel extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	int speed = 1;
@@ -18,7 +18,7 @@ public class MyPanel extends JPanel implements ActionListener{
 	int wOffset = 23;
 	int hOffset = 57;
 	
-	public MyPanel(int w, int h){
+	public MainPanel(int w, int h){
 		setBackground(Color.BLACK);
 		setFocusable(true);
 		timer = new Timer(speed, this);
