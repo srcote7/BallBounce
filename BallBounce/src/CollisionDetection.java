@@ -54,6 +54,7 @@ public class CollisionDetection {
 		float deltaY = Math.abs(ballA.getyPosCenter() - ballB.getyPosCenter());
 		float distance = (float) Math.pow(deltaX*deltaX + deltaY*deltaY, .5);
 		if(distance <= radiusA + radiusB){
+			System.out.println("Collision between R1(" + ballA.getRadius() + ") and R2(" + ballB.getRadius() + ")");
 			return true;
 		}
 		return false;

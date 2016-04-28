@@ -8,10 +8,11 @@ import javax.swing.Timer;
 public class MainPanel extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
-	int speed = 1;
+	int speed = 4;
 	Timer timer;
 	CollisionDetection c;
 	BallList bl;
+	BallCollider bc;
 	Ball ballA;
 	Ball ballB;
 	Ball ballC;
@@ -24,16 +25,11 @@ public class MainPanel extends JPanel implements ActionListener{
 		timer = new Timer(speed, this);
 		timer.start();
 		c = new CollisionDetection(w-wOffset, h-hOffset);
+		bc = new BallCollider();
 		
-		ballA = new Ball(50, 50, 12);
-		ballA.setxSpeed(1);
-		ballA.setySpeed(1);
-		ballB = new Ball(300, 300, 25);
-		ballB.setxSpeed(-1);
-		ballB.setySpeed(-1);
-		ballC = new Ball(500, 100, 50);
-		ballC.setxSpeed(1);
-		ballC.setySpeed(-1);
+		ballA = new Ball(50, 50, 12, 5, 5, 1);
+		ballB = new Ball(300, 300, 25, -3, -3, 3);
+		ballC = new Ball(500, 100, 50, 2, -2, 6);
 		bl = new BallList();
 		bl.addBall(ballA);
 		bl.addBall(ballB);
@@ -52,8 +48,17 @@ public class MainPanel extends JPanel implements ActionListener{
 				tempBall.setxSpeed(tempBall.getxSpeed()*-1);
 			}
 			if (i < bl.getSize()-1){
-				Ball nextBall = bl.getBall(i+1);
-				c.ballBallHit(tempBall, nextBall);
+				for (int j = i+1; j < bl.getSize(); j++){
+					Ball nextBall = bl.getBall(j);
+					if (c.ballBallHit(tempBall, nextBall)){
+						bc.calculateVector(tempBall, nextBall);
+						tempBall.setxSpeed(bc.getBallAX());
+						tempBall.setySpeed(bc.getBallAY());
+						nextBall.setxSpeed(bc.getBallBX());
+						nextBall.setySpeed(bc.getBallBY());
+					}
+				}
+
 			}
 		}		
 
@@ -72,8 +77,8 @@ public class MainPanel extends JPanel implements ActionListener{
 
 		for (int i=0; i < bl.getSize(); i++){
 			Ball tempBall = bl.getBall(i);
-			tempBall.setxPos(tempBall.getxPos()+tempBall.getxSpeed());
-			tempBall.setyPos(tempBall.getyPos()+tempBall.getySpeed());
+			tempBall.setxPos((int) (tempBall.getxPos()+tempBall.getxSpeed()));
+			tempBall.setyPos((int) (tempBall.getyPos()+tempBall.getySpeed()));
 		}	
 		
 	}
