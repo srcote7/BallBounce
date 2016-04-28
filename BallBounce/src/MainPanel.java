@@ -82,8 +82,8 @@ public class MainPanel extends JPanel implements ActionListener{
 
 		for (int i=0; i < bl.getSize(); i++){
 			Ball tempBall = bl.getBall(i);
-			tempBall.setxPos((int) (tempBall.getxPos()+tempBall.getxSpeed()));
-			tempBall.setyPos((int) (tempBall.getyPos()+tempBall.getySpeed()));
+			tempBall.setxPos((tempBall.getxPos()+tempBall.getxSpeed()));
+			tempBall.setyPos((tempBall.getyPos()+tempBall.getySpeed()));
 		}	
 		
 	}

@@ -65,15 +65,19 @@ public class BallCollider {
 	}
 
 	public double getBallAX(){
+		System.out.println(v1xp);
 		return v1xp;
 	}
 	public double getBallAY(){
+		System.out.println(v1yp);
 		return v1yp;
 	}
 	public double getBallBX(){
+		System.out.println(v2xp);
 		return v2xp;
 	}
 	public double getBallBY(){
+		System.out.println(v2yp);
 		return v2yp;
 	}
 
