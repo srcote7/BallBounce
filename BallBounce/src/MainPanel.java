@@ -8,7 +8,7 @@ import javax.swing.Timer;
 public class MainPanel extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
-	int speed = 4;
+	int speed = 3;
 	Timer timer;
 	CollisionDetection c;
 	BallList bl;
@@ -16,6 +16,7 @@ public class MainPanel extends JPanel implements ActionListener{
 	Ball ballA;
 	Ball ballB;
 	Ball ballC;
+	Ball ballD;
 	int wOffset = 23;
 	int hOffset = 57;
 	
@@ -27,13 +28,15 @@ public class MainPanel extends JPanel implements ActionListener{
 		c = new CollisionDetection(w-wOffset, h-hOffset);
 		bc = new BallCollider();
 		
-		ballA = new Ball(50, 50, 12, 5, 5, 1);
-		ballB = new Ball(300, 300, 25, -3, -3, 3);
-		ballC = new Ball(500, 100, 50, 2, -2, 6);
+		ballA = new Ball(75, 75, 25, -3, 3, 1);
+		ballB = new Ball(200, 50, 25, 3, 3, 5);
+		ballC = new Ball(300, 300, 25, 3,-3, 10);
+		ballD = new Ball(250, 150, 25, -3,-3, 1);
 		bl = new BallList();
 		bl.addBall(ballA);
 		bl.addBall(ballB);
 		bl.addBall(ballC);
+		bl.addBall(ballD);
 
 	}
 	
@@ -74,6 +77,8 @@ public class MainPanel extends JPanel implements ActionListener{
 		g.fillOval(ballB.getxPos(), ballB.getyPos(), ballB.getRadius()*2, ballB.getRadius()*2);
 		g.setColor(Color.GREEN);
 		g.fillOval(ballC.getxPos(), ballC.getyPos(), ballC.getRadius()*2, ballC.getRadius()*2);
+		g.setColor(Color.RED);
+		g.fillOval(ballD.getxPos(), ballD.getyPos(), ballD.getRadius()*2, ballD.getRadius()*2);
 
 		for (int i=0; i < bl.getSize(); i++){
 			Ball tempBall = bl.getBall(i);

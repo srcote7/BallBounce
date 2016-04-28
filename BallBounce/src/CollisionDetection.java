@@ -16,13 +16,15 @@ public class CollisionDetection {
 		return false;
 	}
 	private boolean topWallHit(Ball ball){
-		if (ball.getyPosCenter() <= ball.getRadius()){
+		if (ball.getyPosCenter() <= ball.getRadius() && ball.getLastIdHit() != 1){
+			ball.setLastIdHit(1);
 			return true;
 		}
 		return false;
 	}
 	private boolean bottomWallHit(Ball ball){
-		if (ball.getyPosCenter() >= panelHeight - ball.getRadius()){
+		if (ball.getyPosCenter() >= panelHeight - ball.getRadius() && ball.getLastIdHit() != 2){
+			ball.setLastIdHit(2);
 			return true;
 		}
 		return false;
@@ -35,13 +37,15 @@ public class CollisionDetection {
 		return false;
 	}
 	private boolean leftWallHit(Ball ball){
-		if (ball.getxPosCenter() <= ball.getRadius()){
+		if (ball.getxPosCenter() <= ball.getRadius() && ball.getLastIdHit() != 3){
+			ball.setLastIdHit(3);
 			return true;
 		}
 		return false;
 	}
 	private boolean rightWallHit(Ball ball){
-		if (ball.getxPosCenter() >= panelWidth - ball.getRadius()){
+		if (ball.getxPosCenter() >= panelWidth - ball.getRadius() && ball.getLastIdHit() != 4){
+			ball.setLastIdHit(4);
 			return true;
 		}
 		return false;
@@ -53,9 +57,12 @@ public class CollisionDetection {
 		float deltaX = Math.abs(ballA.getxPosCenter() - ballB.getxPosCenter());
 		float deltaY = Math.abs(ballA.getyPosCenter() - ballB.getyPosCenter());
 		float distance = (float) Math.pow(deltaX*deltaX + deltaY*deltaY, .5);
-		if(distance <= radiusA + radiusB){
-			System.out.println("Collision between R1(" + ballA.getRadius() + ") and R2(" + ballB.getRadius() + ")");
+		if(distance <= radiusA + radiusB && (ballA.getLastIdHit() != ballB.getId() || ballB.getLastIdHit() != ballA.getId())){
+			System.out.println("Collision between R1(" + ballA.getRadius() + ") and R2(" + ballB.getRadius() + ") distance: " + distance);
+			ballA.setLastIdHit(ballB.getId());
+			ballB.setLastIdHit(ballA.getId());
 			return true;
+
 		}
 		return false;
 	}

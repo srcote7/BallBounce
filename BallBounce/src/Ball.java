@@ -7,6 +7,9 @@ public class Ball{
 	private double xSpeed;
 	private double ySpeed;
 	private int mass;
+	private int id;
+	private static int idSetter = 5;
+	private int lastIdHit;
 
 	Ball(int x, int y, int r, int xs, int ys, int m) {
 		this.setRadius(r);
@@ -15,6 +18,8 @@ public class Ball{
 		this.setxSpeed(xs);
 		this.setySpeed(ys);
 		this.setMass(m);
+		this.id = idSetter;
+		idSetter++;
 	}
 
 
@@ -38,6 +43,9 @@ public class Ball{
 	}
 	public void setMass(int mass) {
 		this.mass = mass;
+	}
+	public void setLastIdHit(int lastIdHit) {
+		this.lastIdHit = lastIdHit;
 	}
 	
 /*
@@ -67,6 +75,20 @@ public class Ball{
 	public int getMass() {
 		return mass;
 	}
+	public int getLastIdHit() {
+		return lastIdHit;
+	}
+	public int getId() {
+		return id;
+	}
+
+
+
+
+
+
+
+
 
 
 
