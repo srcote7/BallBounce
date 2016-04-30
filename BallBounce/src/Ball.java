@@ -2,8 +2,8 @@
 public class Ball{
 	
 	private int radius;
-	private double xPos;
-	private double yPos;
+	private float xPos;
+	private float yPos;
 	private double xSpeed;
 	private double ySpeed;
 	private int mass;
@@ -29,10 +29,10 @@ public class Ball{
 	public void setRadius(int radius) {
 		this.radius = radius;
 	}
-	public void setxPos(double x) {
+	public void setxPos(float x) {
 		this.xPos = x;
 	}
-	public void setyPos(double y) {
+	public void setyPos(float y) {
 		this.yPos = y;
 	}
 	public void setxSpeed(double xs) {
@@ -54,11 +54,11 @@ public class Ball{
 	public int getRadius() {
 		return radius;
 	}
-	public int getxPos() {
-		return (int) xPos;
+	public float getxPos() {
+		return xPos;
 	}
-	public int getyPos() {
-		return (int) yPos;
+	public float getyPos() {
+		return yPos;
 	}
 	public int getxPosCenter(){
 		return (int) xPos + radius;

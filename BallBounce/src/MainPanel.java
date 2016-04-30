@@ -28,10 +28,10 @@ public class MainPanel extends JPanel implements ActionListener{
 		c = new CollisionDetection(w-wOffset, h-hOffset);
 		bc = new BallCollider();
 		
-		ballA = new Ball(75, 75, 25, -3, 3, 1);
-		ballB = new Ball(200, 50, 25, 3, 3, 5);
+		ballA = new Ball(75, 75, 25, -1, 1, 1);
+		ballB = new Ball(200, 50, 25, 2, 2, 5);
 		ballC = new Ball(300, 300, 25, 3,-3, 10);
-		ballD = new Ball(250, 150, 25, -3,-3, 1);
+		ballD = new Ball(250, 150, 25, -1,-1, 1);
 		bl = new BallList();
 		bl.addBall(ballA);
 		bl.addBall(ballB);
@@ -46,9 +46,14 @@ public class MainPanel extends JPanel implements ActionListener{
 			Ball tempBall = bl.getBall(i);
 			if(c.horizontalWallHit(tempBall)){
 				tempBall.setySpeed(tempBall.getySpeed()*-1);
+				System.out.println(tempBall.getySpeed());
 			}
 			if(c.verticalWallHit(tempBall)){
 				tempBall.setxSpeed(tempBall.getxSpeed()*-1);
+			}
+			if(c.cornerHit(tempBall)){
+				tempBall.setxSpeed(tempBall.getxSpeed()*-1);
+				tempBall.setySpeed(tempBall.getySpeed()*-1);
 			}
 			if (i < bl.getSize()-1){
 				for (int j = i+1; j < bl.getSize(); j++){
@@ -71,24 +76,26 @@ public class MainPanel extends JPanel implements ActionListener{
 	@Override
 	public void paint(Graphics g){
 		super.paintComponent(g);
-		g.setColor(Color.RED);
-		g.fillOval(ballA.getxPos(), ballA.getyPos(), ballA.getRadius()*2, ballA.getRadius()*2);
+		
+		
+		g.setColor(Color.WHITE);
+		g.fillOval((int) ballA.getxPos(), (int)ballA.getyPos(), ballA.getRadius()*2, ballA.getRadius()*2);
 		g.setColor(Color.BLUE);
-		g.fillOval(ballB.getxPos(), ballB.getyPos(), ballB.getRadius()*2, ballB.getRadius()*2);
+		g.fillOval((int) ballB.getxPos(), (int) ballB.getyPos(), ballB.getRadius()*2, ballB.getRadius()*2);
 		g.setColor(Color.GREEN);
-		g.fillOval(ballC.getxPos(), ballC.getyPos(), ballC.getRadius()*2, ballC.getRadius()*2);
+		g.fillOval((int) ballC.getxPos(), (int) ballC.getyPos(), ballC.getRadius()*2, ballC.getRadius()*2);
 		g.setColor(Color.RED);
-		g.fillOval(ballD.getxPos(), ballD.getyPos(), ballD.getRadius()*2, ballD.getRadius()*2);
+		g.fillOval((int) ballD.getxPos(), (int) ballD.getyPos(), ballD.getRadius()*2, ballD.getRadius()*2);
 
 		for (int i=0; i < bl.getSize(); i++){
 			Ball tempBall = bl.getBall(i);
-			tempBall.setxPos((tempBall.getxPos()+tempBall.getxSpeed()));
-			tempBall.setyPos((tempBall.getyPos()+tempBall.getySpeed()));
+			tempBall.setxPos((float) (tempBall.getxPos()+tempBall.getxSpeed()));
+			tempBall.setyPos((float) (tempBall.getyPos()+tempBall.getySpeed()));
 		}	
-		
 	}
 
 	@Override
+	
 	public void actionPerformed(ActionEvent arg0) {
 		stepGraphics();
 	}
