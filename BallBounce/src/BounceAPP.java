@@ -7,7 +7,7 @@ public class BounceAPP {
 		JFrame frame = new JFrame("Ball-Bounce");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JFrame.setDefaultLookAndFeelDecorated(true);
-		frame.setSize(700, 500);
+		frame.setSize(1200, 800);
 		MainPanel panel = new MainPanel(frame.getWidth(), frame.getHeight());
 		frame.add(panel);
 		frame.setVisible(true);

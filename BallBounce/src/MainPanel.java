@@ -28,9 +28,14 @@ public class MainPanel extends JPanel implements ActionListener{
 		c = new CollisionDetection(w-wOffset, h-hOffset);
 		bc = new BallCollider();
 		
+		/*
+		 * Add balls as desired
+		 * ARGS: xPos, yPos, Radius, xSpeed, ySpeed, Mass
+		 * 
+		 */
 		ballA = new Ball(75, 75, 25, -1, 1, 1);
-		ballB = new Ball(200, 50, 25, 2, 2, 5);
-		ballC = new Ball(300, 300, 25, 3,-3, 10);
+		ballB = new Ball(200, 50, 50, 2, 2, 5);
+		ballC = new Ball(300, 300, 75, 3,-3, 10);
 		ballD = new Ball(250, 150, 25, -1,-1, 1);
 		bl = new BallList();
 		bl.addBall(ballA);
@@ -77,18 +82,19 @@ public class MainPanel extends JPanel implements ActionListener{
 	public void paint(Graphics g){
 		super.paintComponent(g);
 		
-		
-		g.setColor(Color.WHITE);
-		g.fillOval((int) ballA.getxPos(), (int)ballA.getyPos(), ballA.getRadius()*2, ballA.getRadius()*2);
-		g.setColor(Color.BLUE);
-		g.fillOval((int) ballB.getxPos(), (int) ballB.getyPos(), ballB.getRadius()*2, ballB.getRadius()*2);
-		g.setColor(Color.GREEN);
-		g.fillOval((int) ballC.getxPos(), (int) ballC.getyPos(), ballC.getRadius()*2, ballC.getRadius()*2);
-		g.setColor(Color.RED);
-		g.fillOval((int) ballD.getxPos(), (int) ballD.getyPos(), ballD.getRadius()*2, ballD.getRadius()*2);
-
 		for (int i=0; i < bl.getSize(); i++){
 			Ball tempBall = bl.getBall(i);
+			
+			if (tempBall.getMass() <= 2){
+				g.setColor(Color.RED);
+			} else if (tempBall.getMass() <= 5){
+				g.setColor(Color.GREEN);
+			} else {
+				g.setColor(Color.BLUE);
+			}
+			
+			g.fillOval((int) tempBall.getxPos(), (int)tempBall.getyPos(), tempBall.getRadius()*2, tempBall.getRadius()*2);
+			
 			tempBall.setxPos((float) (tempBall.getxPos()+tempBall.getxSpeed()));
 			tempBall.setyPos((float) (tempBall.getyPos()+tempBall.getySpeed()));
 		}	
