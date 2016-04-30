@@ -33,7 +33,7 @@ public class MainPanel extends JPanel implements ActionListener{
 		 * ARGS: xPos, yPos, Radius, xSpeed, ySpeed, Mass
 		 * 
 		 */
-		ballA = new Ball(75, 75, 25, -1, 1, 1);
+		ballA = new Ball(75, 75, 25, -1, -1, 1);
 		ballB = new Ball(200, 50, 50, 2, 2, 5);
 		ballC = new Ball(300, 300, 75, 3,-3, 10);
 		ballD = new Ball(250, 150, 25, -1,-1, 1);
@@ -51,15 +51,16 @@ public class MainPanel extends JPanel implements ActionListener{
 			Ball tempBall = bl.getBall(i);
 			if(c.horizontalWallHit(tempBall)){
 				tempBall.setySpeed(tempBall.getySpeed()*-1);
-				System.out.println(tempBall.getySpeed());
 			}
 			if(c.verticalWallHit(tempBall)){
 				tempBall.setxSpeed(tempBall.getxSpeed()*-1);
 			}
-			if(c.cornerHit(tempBall)){
+			/*if(c.cornerHit(tempBall)){
+				System.out.println("Before Speed(x,y): " + tempBall.getxSpeed() + "," + tempBall.getySpeed());
 				tempBall.setxSpeed(tempBall.getxSpeed()*-1);
 				tempBall.setySpeed(tempBall.getySpeed()*-1);
-			}
+				System.out.println("After Speed(x,y): " + tempBall.getxSpeed() + "," + tempBall.getySpeed());
+			}*/
 			if (i < bl.getSize()-1){
 				for (int j = i+1; j < bl.getSize(); j++){
 					Ball nextBall = bl.getBall(j);
