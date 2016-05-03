@@ -17,8 +17,18 @@ public class MainPanel extends JPanel implements ActionListener{
 	Ball ballB;
 	Ball ballC;
 	Ball ballD;
+	Ball ballE;
+	Ball ballF;
+	Ball ballG;
+	Ball ballH;
 	int wOffset = 23;
 	int hOffset = 57;
+	int radiusMin = 10;
+	int radiusMax = 75;
+	int speedMin = -3;
+	int speedMax = 3;
+	int massMin = 2;
+	int massMax = 10;
 	
 	public MainPanel(int w, int h){
 		setBackground(Color.BLACK);
@@ -33,15 +43,23 @@ public class MainPanel extends JPanel implements ActionListener{
 		 * ARGS: xPos, yPos, Radius, xSpeed, ySpeed, Mass
 		 * 
 		 */
-		ballA = new Ball(75, 75, 25, -1, -1, 1);
-		ballB = new Ball(200, 50, 50, 2, 2, 5);
-		ballC = new Ball(300, 300, 75, 3,-3, 10);
-		ballD = new Ball(250, 150, 25, -1,-1, 1);
+		ballA = new Ball(100, 100, RandomGen.getRandomInt(radiusMin, radiusMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(massMin, massMax));
+		ballB = new Ball(300, 200, RandomGen.getRandomInt(radiusMin, radiusMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(massMin, massMax));
+		ballC = new Ball(900, 100, RandomGen.getRandomInt(radiusMin, radiusMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(massMin, massMax));
+		ballD = new Ball(200, 500, RandomGen.getRandomInt(radiusMin, radiusMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(massMin, massMax));
+		ballE = new Ball(100, 500, RandomGen.getRandomInt(radiusMin, radiusMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(massMin, massMax));
+		ballF = new Ball(300, 400, RandomGen.getRandomInt(radiusMin, radiusMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(massMin, massMax));
+		ballG = new Ball(600, 100, RandomGen.getRandomInt(radiusMin, radiusMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(massMin, massMax));
+		ballH = new Ball(800, 500, RandomGen.getRandomInt(radiusMin, radiusMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(massMin, massMax));
 		bl = new BallList();
 		bl.addBall(ballA);
 		bl.addBall(ballB);
 		bl.addBall(ballC);
 		bl.addBall(ballD);
+		bl.addBall(ballE);
+		bl.addBall(ballF);
+		bl.addBall(ballG);
+		bl.addBall(ballH);
 
 	}
 	
@@ -55,12 +73,6 @@ public class MainPanel extends JPanel implements ActionListener{
 			if(c.verticalWallHit(tempBall)){
 				tempBall.setxSpeed(tempBall.getxSpeed()*-1);
 			}
-			/*if(c.cornerHit(tempBall)){
-				System.out.println("Before Speed(x,y): " + tempBall.getxSpeed() + "," + tempBall.getySpeed());
-				tempBall.setxSpeed(tempBall.getxSpeed()*-1);
-				tempBall.setySpeed(tempBall.getySpeed()*-1);
-				System.out.println("After Speed(x,y): " + tempBall.getxSpeed() + "," + tempBall.getySpeed());
-			}*/
 			if (i < bl.getSize()-1){
 				for (int j = i+1; j < bl.getSize(); j++){
 					Ball nextBall = bl.getBall(j);
@@ -90,8 +102,10 @@ public class MainPanel extends JPanel implements ActionListener{
 				g.setColor(Color.RED);
 			} else if (tempBall.getMass() <= 5){
 				g.setColor(Color.GREEN);
-			} else {
+			} else if (tempBall.getMass() <= 8){
 				g.setColor(Color.BLUE);
+			} else {
+				g.setColor(Color.ORANGE);
 			}
 			
 			g.fillOval((int) tempBall.getxPos(), (int)tempBall.getyPos(), tempBall.getRadius()*2, tempBall.getRadius()*2);

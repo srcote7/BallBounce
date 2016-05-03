@@ -8,20 +8,7 @@ public class CollisionDetection {
 		this.panelWidth = w;
 		this.panelHeight = h;
 	}
-	
-	/*public boolean cornerHit(Ball ball){
-		if ((topWallHit(ball) && leftWallHit(ball)) ||
-			(topWallHit(ball) && rightWallHit(ball)) ||
-			(bottomWallHit(ball) && leftWallHit(ball)) ||
-			(bottomWallHit(ball) && rightWallHit(ball))
-			){
-			System.out.println("CORNER HIT!!");
-			return true;
-		} else {
-			return false;
-		}
-	}*/
-	
+		
 	public boolean horizontalWallHit(Ball ball){
 		if (topWallHit(ball) || bottomWallHit(ball)){
 			return true;
