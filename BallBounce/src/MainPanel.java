@@ -11,60 +11,25 @@ public class MainPanel extends JPanel implements ActionListener{
 	int speed = 3;
 	Timer timer;
 	CollisionDetection c;
-	BallList bl;
 	BallCollider bc;
-	Ball ballA;
-	Ball ballB;
-	Ball ballC;
-	Ball ballD;
-	Ball ballE;
-	Ball ballF;
-	Ball ballG;
-	Ball ballH;
 	int wOffset = 23;
 	int hOffset = 57;
-	int radiusMin = 10;
-	int radiusMax = 75;
-	int speedMin = -3;
-	int speedMax = 3;
-	int massMin = 2;
-	int massMax = 10;
+	BallList bl;
 	
-	public MainPanel(int w, int h){
+	public MainPanel(int w, int h, BallList bl){
 		setBackground(Color.BLACK);
 		setFocusable(true);
 		timer = new Timer(speed, this);
 		timer.start();
 		c = new CollisionDetection(w-wOffset, h-hOffset);
 		bc = new BallCollider();
+		this.bl = bl;
 		
-		/*
-		 * Add balls as desired
-		 * ARGS: xPos, yPos, Radius, xSpeed, ySpeed, Mass
-		 * 
-		 */
-		ballA = new Ball(100, 100, RandomGen.getRandomInt(radiusMin, radiusMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(massMin, massMax));
-		ballB = new Ball(300, 200, RandomGen.getRandomInt(radiusMin, radiusMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(massMin, massMax));
-		ballC = new Ball(900, 100, RandomGen.getRandomInt(radiusMin, radiusMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(massMin, massMax));
-		ballD = new Ball(200, 500, RandomGen.getRandomInt(radiusMin, radiusMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(massMin, massMax));
-		ballE = new Ball(100, 500, RandomGen.getRandomInt(radiusMin, radiusMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(massMin, massMax));
-		ballF = new Ball(300, 400, RandomGen.getRandomInt(radiusMin, radiusMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(massMin, massMax));
-		ballG = new Ball(600, 100, RandomGen.getRandomInt(radiusMin, radiusMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(massMin, massMax));
-		ballH = new Ball(800, 500, RandomGen.getRandomInt(radiusMin, radiusMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(speedMin, speedMax), RandomGen.getRandomInt(massMin, massMax));
-		bl = new BallList();
-		bl.addBall(ballA);
-		bl.addBall(ballB);
-		bl.addBall(ballC);
-		bl.addBall(ballD);
-		bl.addBall(ballE);
-		bl.addBall(ballF);
-		bl.addBall(ballG);
-		bl.addBall(ballH);
-
 	}
 	
 	private void stepGraphics(){
-
+		
+		System.out.println(bl.getSize());
 		for (int i=0; i < bl.getSize(); i++){
 			Ball tempBall = bl.getBall(i);
 			if(c.horizontalWallHit(tempBall)){
